@@ -42,7 +42,7 @@ Path to the styles inside the active theme:
 
 == Screenshots ==
 
-1. Shortcodes
+1. Features
 
 == Changelog ==
 
