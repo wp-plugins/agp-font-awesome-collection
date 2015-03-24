@@ -5,13 +5,34 @@ Requires at least: 3.5.0
 Tested up to: 4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable tag: 1.0.0
+Stable tag: trunk
 
-Allows to use "Font Awesome" icons into WordPress theme and also has some useful features for work with "Font Awesome" icons
+Full set of Font Awesome Icons in one plugin for Your website
 
 == Description ==
 
 The plugin allows to use "Font Awesome" icons into WordPress theme and also has some useful features for work with "Font Awesome" icons
+
+= Shortcodes =
+
+These are the shortcodes available:
+
+* Current Font Awesome version
+
+`[fac_version]`
+
+* Single Icon
+
+`[fac_icon icon=cubes]`
+
+* Button
+
+`[fac_button icon=facebook name=mybuttonid_1 title="Link To Facebook"]`
+
+* Dropdown
+
+`[fac_dropdown icon=cc-visa name=myselectid_1]`
+
 
 See the [screenshots](https://wordpress.org/plugins/agp-font-awesome-collection/screenshots/) and [FAQ](https://wordpress.org/plugins/agp-font-awesome-collection/faq/) tabs for more details.
 
