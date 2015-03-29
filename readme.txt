@@ -1,6 +1,6 @@
 === AGP Font Awesome Collection ===
 Contributors: agolubnichenko
-Tags: agp, font-awesome, icon font, icons
+Tags: agp, font-awesome, font awesome, icon font, icons, button, buttons, developer, developer tools, tools, shortcode
 Requires at least: 3.5.0
 Tested up to: 4.1
 License: GPLv2 or later
