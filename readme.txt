@@ -7,7 +7,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Stable tag: 1.0.1
 
-Full set of Font Awesome Icons in one plugin for Your website
+Full set of Font Awesome Icons with Extra Tools in one plugin for Your website
 
 == Description ==
 
@@ -61,10 +61,21 @@ Path to the styles inside the active theme:
 
 == Screenshots ==
 
-1. Features
-2. Button for adding Font Awesome Icons in TinyMCE editor
+1. Icons and Buttons
+2. Dropdown List of Icons
+3. Current Version
+4. Font Awesome Icons in TinyMCE editor
 
 == Changelog ==
+
+= 1.1.0 =
+
+* Changes and cleanup of default elements styling
+* Changes and cleanup of default elements templates
+* Were added extended parameters for existing shortcodes
+* Was added new shortcode "fac_icontext" for simple icon with text
+* Added extended plugin user guide
+* Minor changes
 
 = 1.0.1 =
 
