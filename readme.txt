@@ -63,6 +63,7 @@ Shortcode with additional attributes:
 * **text_color** – allows to set text color with HEX color value
 
 As general references you can use Font Awesome official examples:  http://fortawesome.github.io/Font-Awesome/examples/ .
+
 As for Font Awesome icon names references you can check following link: http://fortawesome.github.io/Font-Awesome/cheatsheet/ .
 
 More info you can find on the [screenshots](https://wordpress.org/plugins/agp-font-awesome-collection/screenshots/) and [FAQ](https://wordpress.org/plugins/agp-font-awesome-collection/faq/) tabs.
@@ -101,9 +102,9 @@ More info you can find on the [screenshots](https://wordpress.org/plugins/agp-fo
 
 Following shortcode can be used for adding of dropdown with Font Awesome icons list:
 
-`[fac_dropdown icon=”cc-visa” name=”myselectid_1”]`
+`[fac_dropdown icon="cc-visa" name="myselectid_1"]`
 
-* **icon** – allows to set Font Awesome icon that shows by default ; use Font Awesome  icon name without “fa-” prefix
+* **icon** – allows to set Font Awesome icon that shows by default ; use Font Awesome  icon name without "fa-" prefix
 * **name** – allows to set unique dropdown name (select ID attribute); this parameter can be used for development purpose (e.g. JavaScript)
 
 Also this shortcode can be used directly in code.
@@ -137,12 +138,12 @@ You can find general objects access methods below:
 * etc.
 
 Each icon is an Object and also has properties and methods.
-For example, if you need to get and show icon display name (e.g. “adn”), you need to use following code:
+For example, if you need to get and show icon display name (e.g. "adn"), you need to use following code:
 
 `<?php echo Fac()->getIconRepository()->findById('adn')->getName(); ?>`
 
-As result, will be displayed: “App.net”
-For more references you can check realization for “Fac_IconRepository” and  “Fac_IconEntity” classes in plugin code.
+As result, will be displayed: "App.net"
+For more references you can check realization for "Fac_IconRepository" and  "Fac_IconEntity" classes in plugin code.
 Also you can send any questions in plugin [support](https://wordpress.org/support/plugin/agp-font-awesome-collection) tab.
 
 == Installation ==
