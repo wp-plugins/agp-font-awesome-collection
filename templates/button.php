@@ -1,5 +1,5 @@
 <?php
-if (!empty($params)):
+if (!empty($params) && !empty($params['icon'])) :
     $name = !empty($params['name']) ? $params['name'] : '';
     $title = !empty($params['title']) ? $params['title'] : '';
     $icon = !empty($params['icon']) ? $params['icon'] : '';
@@ -15,7 +15,7 @@ if (!empty($params)):
     if (!empty($background)) {
         $styles[] = "background: $background"; 
     }
-    if (isset($border_radius)) {
+    if (!empty($border_radius)) {
         $styles[] = "border-radius: $border_radius"; 
     }    
     if (!empty($border_width)) {
