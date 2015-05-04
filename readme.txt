@@ -173,11 +173,11 @@ Path to the styles inside the active theme:
 
 = How to use visual constructor? (coming soon...) =
 
-[youtube https://www.youtube.com/embed/TJ3QqH4BsYY]
+[youtube http://www.youtube.com/watch?v=TJ3QqH4BsYY]
 
 = How to create own shortcode?  (coming soon...)  =
 
-[youtube https://www.youtube.com/embed/BT02i79Vmts]
+[youtube http://www.youtube.com/watch?v=BT02i79Vmts]
 
 == Screenshots ==
 
