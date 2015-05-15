@@ -7,7 +7,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Stable tag: trunk
 
-Latest Font Awesome icons with HTML and shortcodes usage, dynamic visualizer for TinyMCE editor, promotion widget and other features in the one plugin
+The latest Font Awesome icons with HTML and shortcodes usage, dynamic visualizer for TinyMCE, promotion widget and other features in the one plugin
 
 == Description ==
 
