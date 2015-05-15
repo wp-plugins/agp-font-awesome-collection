@@ -1,5 +1,5 @@
 === AGP Font Awesome Collection ===
-Contributors: Alexey Golubnichenko
+Contributors: agolubnichenko
 Tags: agp, fontawesome, font-awesome, font awesome, Font Awesome, fa, fa-icon, fa icons, icon font, icons, font, button, buttons, developer, developer tools, tools, shortcode, social icons, social links, social buttons, ui, tinymce, visualizer, promotion, ad promotion
 Requires at least: 3.5.0
 Tested up to: 4.2
