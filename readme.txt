@@ -50,7 +50,7 @@ More info you can find on the [screenshots](https://wordpress.org/plugins/agp-fo
 
 == Frequently Asked Questions ==
 
-= How can I change the Shortcode content? =
+= How to change the Shortcode content =
 
 The plugin includes some templates for each shortcode in "templates/" folder. 
 You can copy any template in your active theme and customize it for your needs. 
@@ -58,7 +58,7 @@ Path to the templates folder inside the active theme:
 
 [ActiveTheme]/templates/agp-font-awesome-collection/
 
-= How can I style the Shortcode content? =
+= How to style the Shortcode content =
 
 The plugin includes CSS file "assets/css/style.css". 
 You can copy this file in your active theme and customize it for your needs. 
