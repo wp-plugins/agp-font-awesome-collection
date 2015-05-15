@@ -28,7 +28,7 @@ WordPress Developers also can find with this plugin some useful features for usa
 * All shortcodes can be used via Administrator Panel in WISIWING areas and directly in code.
 * Now you can add icons and buttons just in few clicks with the new visual shortcodes constructor.
 * You can create you own shortcodes and use it within visual constructor for different pages or posts as many times as needed.
-* **NEW!** With AGP Font Awesome Promotion widget You can create and show small animated information block in sidebar, that contains Font Awesome icon, headline, description and link to URL. Also You can setup colors for text and background of the widget content. The widget is supported for the mobile devices!
+* **NEW!** With AGP Font Awesome Promotion widget You can create and show small animated information block in sidebar, that contains Font Awesome icon, headline, description and link to URL. Also You can setup colors for text and background of the widget content. **The widget is supported for the mobile devices!**
 
 = How to use visual constructor =
 
