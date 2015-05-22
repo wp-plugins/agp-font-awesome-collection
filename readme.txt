@@ -198,7 +198,7 @@ Also you can send any questions in plugin [support](https://wordpress.org/suppor
 == Changelog ==
 
 = 2.1.1 =
-* Global changes of the plugin core;
+* Global changes of the plugin core
 
 = 2.1.0 =
 * Added AGP Font Awesome Promotion widget
