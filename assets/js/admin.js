@@ -109,23 +109,21 @@
         }
         
         function showSpinner() {
-            $('.fac-constructor-spinner').show();
+            $('.fac-constructor-spinner').css('visibility', 'visible');
             resizeBox();
         }
         
         function hideSpinner() {
-            $('.fac-constructor-spinner').hide();
+            $('.fac-constructor-spinner').css('visibility', 'hidden');
             resizeBox();
         }        
         
         function resizeBox() {
-            //var container = $("#colorbox #cboxContent");
-            //$(container).find('#cboxLoadedContent').height($(container).find('#inline_content').outerHeight());
-            //$(container).height($(container).find('#cboxLoadedContent').outerHeight());            
             $.colorbox.resize();
             $(".fac-constructor-field .iris-picker").css("position", "absolute");
             $("#colorbox, #cboxOverlay, #cboxWrapper").css("overflow", "visible");
         }
+              
     });
 })(jQuery);
 

@@ -1,4 +1,5 @@
 <?php
+use Agp\FontAwesomeCollection\Core\Agp_Module;
 
 class Fac extends Agp_Module {
     
@@ -39,9 +40,26 @@ class Fac extends Agp_Module {
      */
     private $shortcodes;
     
+    /**
+     * Slider
+     * 
+     * @var Fac_Slider 
+     */
+    private $slider;
     
-    
+    /**
+     * Custom elements
+     * 
+     * @var array
+     */
     private $customElements;
+    
+    /**
+     * slider elements
+     * 
+     * @var array
+     */    
+    private $sliderElements;
     
     /**
      * The single instance of the class 
@@ -78,13 +96,15 @@ class Fac extends Agp_Module {
         parent::__construct(dirname(dirname(__FILE__)));
         
         include_once ( $this->getBaseDir() . '/types/shortcodes-post-type.php' );                
+        include_once ( $this->getBaseDir() . '/types/sliders-post-type.php' );                
         
         $this->iconRepository = new Fac_IconRepository();
         $this->settings = Fac_Settings::instance( $this );
         $this->constructor = Fac_Constructor::instance();
         $this->shortcodes = Fac_Shortcodes::instance();
         $this->ajax = Fac_Ajax::instance();
-
+        $this->slider = Fac_Slider::instance();
+        
         add_action( 'init', array($this, 'registerShortcodes' ), 998 );                
         add_action( 'init', array($this, 'init' ), 999 );        
         add_action( 'wp_enqueue_scripts', array($this, 'enqueueScripts' ));                
@@ -108,6 +128,13 @@ class Fac extends Agp_Module {
                 add_shortcode( $key, array( $this, 'doShortcode' ) );                     
             }
         }
+        
+        $this->sliderElements = $this->settings->getSliderElementList();        
+        if (!empty($this->sliderElements)) {
+            foreach ($this->sliderElements as $key => $title) {
+                add_shortcode( $key, array( $this, 'doShortcode' ) );                     
+            }
+        }        
     }
     
     public function init () {
@@ -138,9 +165,10 @@ class Fac extends Agp_Module {
     }        
     
     public function enqueueScripts () {
-        wp_enqueue_script( 'fac-mobile', $this->getAssetUrl('js/jquery.mobile.min.js'), array('jquery') );
+        wp_enqueue_script( 'fac-mobile', $this->getAssetUrl('libs/jquery.mobile.min.js'), array('jquery') );
+        wp_enqueue_script( 'fac-slider', $this->getAssetUrl('libs/responsiveslides.js'), array('jquery') );
         wp_enqueue_style( 'fac-fa', $this->getBaseUrl() .'/vendor/agpfontawesome/components/css/font-awesome.min.css' );
-        wp_enqueue_script( 'fac', $this->getAssetUrl('js/main.js'), array('jquery', 'fac-mobile') );                                                         
+        wp_enqueue_script( 'fac', $this->getAssetUrl('js/main.js'), array('jquery', 'fac-mobile', 'fac-slider') );                                                         
         wp_enqueue_style( 'fac-css', $this->getAssetUrl('css/style.css') );  
     }        
     
@@ -170,9 +198,10 @@ class Fac extends Agp_Module {
         return $this;
     }
     
-    public function doShortcode ($atts, $content, $tag) {
+    public function doPreview ($atts, $content, $tag) {
         $shortcodes = $this->settings->getSortcodes();
         $customShortcodes = $this->customElements;
+        $sliderShortcodes = $this->sliderElements;
         
         if (!empty($shortcodes[$tag])) {
             $obj = $shortcodes[$tag];
@@ -185,6 +214,29 @@ class Fac extends Agp_Module {
             return $this->getTemplate($obj->template, $atts);                             
         } elseif (!empty($customShortcodes[$tag])) {
             return $this->doCustomShortcode($atts, $content, $tag);
+        } elseif (!empty($sliderShortcodes[$tag])) {
+            //return $this->doSliderShortcode($atts, $content, $tag);
+        }
+    }        
+    
+    public function doShortcode ($atts, $content, $tag) {
+        $shortcodes = $this->settings->getSortcodes();
+        $customShortcodes = $this->customElements;
+        $sliderShortcodes = $this->sliderElements;
+        
+        if (!empty($shortcodes[$tag])) {
+            $obj = $shortcodes[$tag];
+            $default = $this->settings->getShortcodeDefaults($tag);            
+            if (empty($atts) || !is_array($atts)) {
+                $atts = array();
+            }
+            $atts = array_merge($default, $atts );        
+            
+            return $this->getTemplate($obj->template, $atts);                             
+        } elseif (!empty($customShortcodes[$tag])) {
+            return $this->doCustomShortcode($atts, $content, $tag);
+        } elseif (!empty($sliderShortcodes[$tag])) {
+            return $this->doSliderShortcode($atts, $content, $tag);
         }
     }    
     
@@ -225,8 +277,39 @@ class Fac extends Agp_Module {
         return $content;        
     }    
     
+    public function doSliderShortcode ($atts, $content, $tag) {
+        global $post;    
+        $content = '';
+        
+        $args = array(
+            'post_type' => 'fac-sliders',
+            'posts_per_page' => -1,
+            'meta_query' => array(
+                array(
+                    'key'     => '_name',
+                    'value'   => array( $tag ),
+                    'compare' => 'IN',
+                ),
+            ),            
+        );
+
+        $query = new WP_Query($args);
+        
+        while ( $query->have_posts() ) : $query->the_post();
+            $post_id = get_the_ID();
+            $template = 'sliders/' . Fac()->getSlider()->getSliderType($post_id) . '/layout';
+            $data = $this->slider->getData($post_id);
+            $content .= $this->getTemplate($template, array('data' => $data, 'post_id' => $post_id ));
+        endwhile;        
+
+        wp_reset_query();
+        
+        return $content;        
+    }      
+    
     public function initWidgets() {
         register_widget('Fac_Promotion');
+        register_widget('Fac_PromotionSlider');
     }    
     
     public function getSettings() {
@@ -248,5 +331,14 @@ class Fac extends Agp_Module {
     public function getCustomElements() {
         return $this->customElements;
     }
+    
+    public function getSlider() {
+        return $this->slider;
+    }
+    
+    public function getSliderElements() {
+        return $this->sliderElements;
+    }
+
 
 }
