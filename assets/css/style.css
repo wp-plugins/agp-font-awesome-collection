@@ -186,16 +186,18 @@
 	padding: 10px 0 0;
 }
 
+
+
 .widget_fac_promotion .fac-promotion-main-section i.fa {
 	font-size: 5em;
 }
 
-.widget_fac_promotion .fac-promotion-preview, .fac-promotion-content {
-	padding: 35px 25px;
+.widget_fac_promotion .fac-promotion-preview, .widget_fac_promotion .fac-promotion-content {
+	padding: 10% 25px;
 }
 
-.widget_fac_promotion .fac-promotion-content h3.fac-headline {
-	padding: 0 0 10px;
+.widget_fac_promotion .fac-promotion-preview.fac-noicon h3.fac-headline {
+	padding: 0;
 }
 
 .widget_fac_promotion .fac-promotion-main-section .fpp-inner {
@@ -203,6 +205,10 @@
 	vertical-align: middle;
 	width: 100%;
 	opacity: 1.0!important;
+}
+
+.widget_fac_promotion .fac-promotion-content h3.fac-headline {
+	padding: 0;
 }
 
 /*-----Default Promotion Slider-----*/
@@ -213,7 +219,7 @@
     margin-bottom: 30px; 
 }
 
-.fac-slider-default > .container > .container { 
+.fac-slider-default > .fac-container > .fac-container { 
     position: absolute; 
     z-index: 3; 
     bottom: 0; 
@@ -224,16 +230,17 @@
 
 .fac-slider-default ul.rslides_tabs { 
     width: auto; 
-    background: #fff; 
+    background: rgba(255,255,255,0.3); 
     padding: 10px 15px; 
     list-style-type: none; 
-    opacity: 0.5; 
+    
     margin: 0 0 0 0;
 }
 
 .fac-slider-default ul.rslides_tabs li { 
     float: left; 
     padding-left: 15px; 
+    list-style: none;
 }
 
 .fac-slider-default ul.rslides_tabs li:first-child { 
@@ -253,14 +260,15 @@
 }
 
 .fac-slider-default ul.rslides_tabs li a { 
-    background: url(../images/slider-nav.png) no-repeat; 
     width: 8px; 
-    height: 8px; 
+    height: 8px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.5); 
 }
 
 .fac-slider-default ul.rslides_tabs li a:hover, 
 .fac-slider-default ul.rslides_tabs li.rslides_here a { 
-    background-position: 0 -8px; 
+     background: rgba(255,255,255,1); 
 }
 
 .fac-slider-default .fac-promotion-main-section {
@@ -282,11 +290,11 @@
 }
 
 .fac-slider-default .fac-promotion-preview, .fac-promotion-content {
-	padding: 35px 25px;
+	padding: 10% 25px;
 }
 
-.fac-slider-default .fac-promotion-content h3.fac-headline {
-	padding: 0 0 10px;
+.fac-slider-default .fac-promotion-preview.fac-noicon h3.fac-headline {
+	padding: 0;
 }
 
 .fac-slider-default .fac-promotion-main-section .fpp-inner {
@@ -294,4 +302,8 @@
 	vertical-align: middle;
 	width: 100%;
 	opacity: 1.0!important;
+}
+
+.fac-slider-default .fac-promotion-content h3.fac-headline {
+	padding: 0;
 }
