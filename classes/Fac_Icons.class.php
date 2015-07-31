@@ -1,14 +1,9 @@
 <?php
 class Fac_Icons {
     
-    public function __construct() {
-        if (!class_exists('Spyc')) {
-            include_once(Fac()->getBaseDir() . '/inc/spyc/Spyc.php');            
-        }
-    }
-    
     public function getData () {    
         $result = Spyc::YAMLLoad(Fac()->getBaseDir() . '/vendor/agpfontawesome/icons/icons.yml');
+        
         $data = array();
         $icons = $result['icons'];
         
@@ -25,7 +20,7 @@ class Fac_Icons {
     
     public function getVersion() {
         ob_start();
-        include_once(Fac()->getBaseDir() . '/vendor/agpfontawesome/components/component.json');
+        include_once(Fac()->getBaseDir() . '/vendor/components/font-awesome/component.json');
         $components = ob_get_clean();
         $components = json_decode($components);
         return $components->version;

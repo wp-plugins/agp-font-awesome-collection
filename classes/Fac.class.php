@@ -77,6 +77,14 @@ class Fac extends Agp_Module {
      */
     private $menuIcons;
     
+
+    /**
+     * LESS Parser
+     * 
+     * @var Less_Parser
+     */
+    private $lessParser;    
+    
     /**
      * The single instance of the class 
      * 
@@ -111,6 +119,9 @@ class Fac extends Agp_Module {
     public function __construct() {
         parent::__construct(dirname(dirname(__FILE__)));
 
+        include_once ( $this->getBaseDir() . '/vendor/autoload.php' );             
+        
+        $this->lessParser = new Less_Parser();        
         $this->iconRepository = new Fac_IconRepository();
         $this->settings = Fac_Settings::instance( $this );        
         
@@ -208,17 +219,18 @@ class Fac extends Agp_Module {
     public function enqueueScripts () {
         wp_enqueue_script( 'fac-mobile', $this->getAssetUrl('libs/jquery.mobile.min.js'), array('jquery') );
         wp_enqueue_script( 'fac-slider', $this->getAssetUrl('libs/responsiveslides.js'), array('jquery') );
-        wp_enqueue_style( 'fac-fa', $this->getBaseUrl() .'/vendor/agpfontawesome/components/css/font-awesome.min.css' );
+        wp_enqueue_style( 'fac-fa', $this->getBaseUrl() .'/vendor/components/font-awesome/css/font-awesome.min.css' );
         wp_enqueue_script( 'fac', $this->getAssetUrl('js/main.js'), array('jquery', 'fac-mobile', 'fac-slider') );                                                         
         wp_enqueue_style( 'fac-css', $this->getAssetUrl('css/style.css') );  
     }        
     
     public function enqueueAdminScripts () {
         wp_enqueue_style( 'wp-color-picker' );        
-        wp_enqueue_script( 'wp-color-picker' );        
+        wp_enqueue_script( 'wp-color-picker' );   
+        wp_enqueue_script( 'jquery-ui-sortable' );            
         wp_enqueue_script('colorbox-js', $this->getAssetUrl() . '/libs/colorbox/jquery.colorbox-min.js',array('jquery'));
         wp_enqueue_style('colorbox-css', $this->getAssetUrl() . '/libs/colorbox/colorbox.css');        
-        wp_enqueue_style( 'fac-fa', $this->getBaseUrl() .'/vendor/agpfontawesome/components/css/font-awesome.min.css' );
+        wp_enqueue_style( 'fac-fa', $this->getBaseUrl() .'/vendor/components/font-awesome/css/font-awesome.min.css' );
         wp_enqueue_script( 'fac', $this->getAssetUrl('js/admin.js'), array('jquery', 'wp-color-picker') );                                                         
         wp_enqueue_style( 'fac-css', $this->getAssetUrl('css/admin.css') );  
         wp_enqueue_style( 'fac-css-front', $this->getAssetUrl('css/style.css') );          
@@ -397,6 +409,10 @@ class Fac extends Agp_Module {
     
     public function getMenuIcons() {
         return $this->menuIcons;
+    }
+
+    public function getLessParser() {
+        return $this->lessParser;
     }
 
 }
