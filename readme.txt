@@ -272,6 +272,8 @@ where:
 18. Menus with Font Awesome Icons
 
 == Changelog ==
+= 2.5.3 =
+* Changed: Minor loading speed optimization
 
 = 2.5.2 =
 * Changed: Minor loading speed optimization
