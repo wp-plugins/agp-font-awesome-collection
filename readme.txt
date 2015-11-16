@@ -272,6 +272,13 @@ where:
 18. Menus with Font Awesome Icons
 
 == Changelog ==
+= 2.6.1 =
+* Changed : Check for the minimum required PHP version on a server
+
+= 2.6.0 =
+* Added : Check for the minimum required PHP version on a server
+* Changed: Minor changes of the plugin core
+
 = 2.5.3 =
 * Changed: Minor loading speed optimization
 

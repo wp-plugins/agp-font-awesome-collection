@@ -3,7 +3,7 @@
  * Plugin Name: AGP Font Awesome Collection
  * Plugin URI: https://wordpress.org/plugins/agp-font-awesome-collection/
  * Description: The latest Font Awesome icons with HTML and shortcodes usage, dynamic visualizer for TinyMCE, promotion widget and other features in the one plugin
- * Version: 2.5.3
+ * Version: 2.6.1
  * Author: Alexey Golubnichenko
  * Author URI: http://www.profosbox.com/
  * License: GPL2
@@ -27,46 +27,40 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-use Agp\FontAwesomeCollection\Core\Agp_Autoloader;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( !defined( 'FAC_MIN_PHP_VERSION' ) ) {
+    define( 'FAC_MIN_PHP_VERSION', '5.3.0');    
 }
 
-add_action('init', 'fac_output_buffer');
-function fac_output_buffer() {
-    ob_start();
-}
-
-if (file_exists(dirname(__FILE__) . '/agp-core/agp-core.php' )) {
-    include_once (dirname(__FILE__) . '/agp-core/agp-core.php' );
-} 
-
-add_action( 'plugins_loaded', 'fac_activate_plugin' );
-function fac_activate_plugin() {
-    if (class_exists('Agp\FontAwesomeCollection\Core\Agp_Autoloader') && !function_exists('Fac')) {
-        $autoloader = Agp_Autoloader::instance();
-        $autoloader->setClassMap(array(
-            'paths' => array(
-                __DIR__ => array('classes'),
-            ),
-            'namespaces' => array(
-                'Agp\FontAwesomeCollection\Core' => array(
-                    __DIR__ => array('agp-core'),
-                ),
-            ),
-            'classmaps' => array (
-                __DIR__ => 'classmap.json',
-            ),            
-        ));
-        //$autoloader->generateClassMap(__DIR__);
-
-        function Fac() {
-            return Fac::instance();
-        }    
-
-        Fac();                
+if ( !defined( 'FAC_CUR_PHP_VERSION' ) ) {
+    if ( function_exists( 'phpversion' ) ) {
+        define( 'FAC_CUR_PHP_VERSION', phpversion() );        
+    } else {
+        define( 'FAC_CUR_PHP_VERSION', FAC_MIN_PHP_VERSION );        
     }
 }
 
-fac_activate_plugin();
+/**
+ * Check for minimum required PHP version
+ */
+if ( function_exists( 'version_compare' ) && version_compare( FAC_CUR_PHP_VERSION , FAC_MIN_PHP_VERSION) == -1 ) {
+    add_action( 'admin_notices', 'Fac_PHPVersion_AdminNotice' , 0 );
+/**
+ * Initialize
+ */    
+} else {
+    include_once (dirname(__FILE__) . '/agp-font-awesome-collection-init.php' );    
+}
+
+function Fac_PHPVersion_AdminNotice() {
+    $name = get_file_data( __FILE__, array ( 'Plugin Name' ), 'plugin' );
+
+    printf(
+        '<div class="error">
+            <p><strong>%s</strong> plugin can\'t work properly. Your current PHP version is <strong>%s</strong>. Minimum required PHP version is <strong>%s</strong>.</p>
+        </div>',
+        $name[0],
+        FAC_CUR_PHP_VERSION,
+        FAC_MIN_PHP_VERSION
+    );
+}
